@@ -101,6 +101,7 @@ python main.py
 ```
 
 **Проверка ендпоинтов**
+Вводить когда запущен localhost
 ```
 curl -X POST "http://localhost:8000/auth/register" \
   -H "Content-Type: application/x-www-form-urlencoded" \
@@ -123,6 +124,7 @@ echo -e "\n--- Логаут выполнен ---\n" && \
 echo "Проверка cookies после логаута:" && \
 cat cookies.txt
 ```
+
 
 
 
