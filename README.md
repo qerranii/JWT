@@ -86,3 +86,44 @@ z - подпись
 Позволяет серверу быстро проверять права доступа
 Обеспечивает автоматическое обновление сессии
 Широко используется в современных веб- и мобильных приложениях
+
+
+
+
+# Для проверки кода
+**Запуск**
+```
+cd src
+```
+
+```
+python main.py
+```
+
+**Проверка ендпоинтов**
+```
+curl -X POST "http://localhost:8000/auth/register" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "first_name=Ivan" \
+  -d "last_name=Ivanov" \
+  -d "email=ivan@example.com" \
+  -d "password=password123" && \
+echo -e "\n--- Регистрация прошла успешно ---\n" && \
+curl -X GET "http://localhost:8000/auth/test-users" && \
+echo -e "\n--- Проверка пользователей ---\n" && \
+curl -X POST "http://localhost:8000/auth/login" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "email=ivan@example.com" \
+  -d "password=password123" \
+  -c cookies.txt && \
+echo -e "\n--- Логин успешен ---\n" && \
+curl -X POST "http://localhost:8000/auth/logout" \
+  -b cookies.txt && \
+echo -e "\n--- Логаут выполнен ---\n" && \
+echo "Проверка cookies после логаута:" && \
+cat cookies.txt
+```
+
+
+
+
