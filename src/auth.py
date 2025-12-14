@@ -57,7 +57,7 @@ async def register_user(
 @router.post(
     "/login",
     summary="create tokens",
-    response_model=auth_schemas.TokenResponse,  # Теперь это правильная Pydantic модель
+    response_model=auth_schemas.TokenResponse,  
 )
 async def login(
         response: Response,
@@ -104,7 +104,6 @@ async def login(
         max_age=REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,  # в секундах
     )
 
-    # Теперь возвращаем Pydantic модель
     return auth_schemas.TokenResponse(
         message="Login successful",
         token_type="bearer"
